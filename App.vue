@@ -33,7 +33,7 @@
 <style scoped>
     .wrapper {
         width: 100%;
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
     }
 
@@ -62,6 +62,6 @@
 
     .photo-grid {
         --photo-width: 50%;
-        margin-right: 50px;
+        margin-right: 150px;
     }
 </style>
