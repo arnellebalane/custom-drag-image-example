@@ -10,6 +10,7 @@
 
             <main>
                 <PhotoGrid />
+                <PhotoList />
             </main>
         </div>
     </div>
@@ -17,12 +18,14 @@
 
 <script>
     import PhotoGrid from './components/PhotoGrid.vue';
+    import PhotoList from './components/PhotoList.vue';
 
     export default {
         name: 'App',
 
         components: {
-            PhotoGrid
+            PhotoGrid,
+            PhotoList
         }
     };
 </script>
@@ -52,7 +55,13 @@
         display: flex;
     }
 
-    .photo-grid {
+    .photo-grid,
+    .photo-list {
         flex: 1 0 0;
+    }
+
+    .photo-grid {
+        --photo-width: 50%;
+        margin-right: 50px;
     }
 </style>
