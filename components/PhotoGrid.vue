@@ -1,6 +1,12 @@
 <template>
     <div class="photo-grid">
-        <div v-for="photo in photos" :key="photo" class="photo">
+        <div
+            v-for="photo in photos"
+            :key="photo"
+            :class="{selected: isSelected(photo)}"
+            @click="toggle(photo)"
+            class="photo"
+        >
             <img :src="photo" alt="Photo grid item" />
         </div>
     </div>
@@ -23,8 +29,23 @@
                     require('../images/08.jpg'),
                     require('../images/09.jpg'),
                     require('../images/10.jpg'),
-                ]
+                ],
+                selectedPhotos: []
             };
+        },
+
+        methods: {
+            toggle(photo) {
+                if (this.isSelected(photo)) {
+                    this.selectedPhotos = this.selectedPhotos.filter(p => p !== photo);
+                } else {
+                    this.selectedPhotos = [...this.selectedPhotos, photo];
+                }
+            },
+
+            isSelected(photo) {
+                return this.selectedPhotos.includes(photo);
+            }
         }
     };
 </script>
@@ -38,19 +59,28 @@
     }
 
     .photo {
-        width: 150px;
+        width: calc(var(--photo-width, 150px) - 10px);
         margin: 5px;
+        border-radius: 3px;
+        position: relative;
         cursor: pointer;
-        overflow: hidden;
+    }
+
+    .photo.selected::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 5px solid #2196f3;
+        border-radius: 3px;
+        pointer-events: none;
     }
 
     img {
         display: block;
         width: 100%;
-        transition: transform 150ms ease-out;
-    }
-
-    .photo:hover img {
-        transform: scale(1.1);
+        border-radius: 3px;
     }
 </style>
