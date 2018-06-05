@@ -107,7 +107,7 @@
                 if (images.length === 1) {
                     canvas.height = 80;
 
-                    context.drawImage(images[0], 0, 0);
+                    context.drawImage(images[0], 0, 0, 120, 80);
                 } else {
                     const isEven = images.length % 2 === 0;
                     canvas.height = isEven
