@@ -5,7 +5,9 @@
             :key="photo"
             :class="{selected: isSelected(photo)}"
             @click="toggle(photo)"
+            @dragstart="onDragStart($event, photo)"
             class="photo"
+            draggable="true"
         >
             <img :src="photo" alt="Photo grid item" />
         </div>
@@ -37,14 +39,37 @@
         methods: {
             toggle(photo) {
                 if (this.isSelected(photo)) {
-                    this.selectedPhotos = this.selectedPhotos.filter(p => p !== photo);
+                    this.deselect(photo);
                 } else {
+                    this.select(photo);
+                }
+            },
+
+            select(photo) {
+                if (!this.isSelected(photo)) {
                     this.selectedPhotos = [...this.selectedPhotos, photo];
+                }
+            },
+
+            deselect(photo) {
+                if (this.isSelected(photo)) {
+                    this.selectedPhotos = this.selectedPhotos.filter(p => p !== photo);
                 }
             },
 
             isSelected(photo) {
                 return this.selectedPhotos.includes(photo);
+            },
+
+            onDragStart(e, photo) {
+                this.select(photo);
+
+                const links = this.selectedPhotos
+                    .map(link => window.location.origin + link)
+                    .join('\n#\n');
+
+                e.dataTransfer.setData('text/uri-list', links);
+                e.dataTransfer.setData('text/plain', links);
             }
         }
     };

@@ -1,6 +1,6 @@
 <template>
     <div class="photo-list">
-        <div class="dropzone">
+        <div class="dropzone" @dragover.prevent @drop.prevent="onDrop">
             <img
                 v-for="photo in photos"
                 :key="photo"
@@ -19,6 +19,16 @@
             return {
                 photos: []
             };
+        },
+
+        methods: {
+            onDrop(e) {
+                if (e.dataTransfer.types.includes('text/uri-list')) {
+                    const links = e.dataTransfer.getData('text/uri-list')
+                        .split(/\n*#\n*/g);
+                    this.photos = links;
+                }
+            }
         }
     };
 </script>
