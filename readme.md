@@ -21,6 +21,6 @@ $ npm run build     # Builds files for deployment inside `build` directory
 - [Drag and Drop Example][3] ([live demo][4])
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
-[2]: https://custom-drag-image-example.arnelle.me/
+[2]: https://custom-drag-image-example.arnelle.dev
 [3]: https://github.com/arnellebalane/drag-and-drop-example
-[4]: https://drag-and-drop-example.arnelle.me/
+[4]: https://drag-and-drop-example.arnelle.dev
